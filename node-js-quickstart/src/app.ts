@@ -1,5 +1,5 @@
 import cassandra from 'cassandra-driver';
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 import path from 'path';
 
 dotenv.config({path: path.join(__dirname, '../', '../', '/.env')});
@@ -16,8 +16,12 @@ const getOneTransaction = async () => {
   console.log(rows);
 };
 
-const getTransactionsByWalletAddress = async (fromAddress:string) => {
-  const {info, columns, rows} = await client.execute(`SELECT * FROM ethereum.transactions_by_address WHERE from_address =?;`, [fromAddress],);
+const getTransactionsByWalletAddress = async (fromAddress: string) => {
+  const {
+    info,
+    columns,
+    rows
+  } = await client.execute(`SELECT * FROM ethereum.transactions_by_address WHERE from_address =?;`, [fromAddress],);
   console.log(rows);
 };
 
