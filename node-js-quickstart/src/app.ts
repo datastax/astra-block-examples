@@ -16,20 +16,9 @@ const getOneTransaction = async () => {
   console.log(rows);
 };
 
-const getOneDashboardAnalyticsRow = async () => {
-  const {info, columns, rows} = await client.execute(`SELECT * FROM ethereum.dashboard_analytics LIMIT 1;`);
-  console.log('---------------------------\n\n')
-  console.log(`INSERT into dashboard_analytics (${Object.keys(rows[0]).join(", ")}) VALUES (${Object.values(rows[0]).map(item => {
-
-    return `'${item}'`;
-  }).join(", ")});`);
-  console.log('\n\n---------------------------')
-};
-
 const getTransactionsByWalletAddress = async (fromAddress:string) => {
   const {info, columns, rows} = await client.execute(`SELECT * FROM ethereum.transactions_by_address WHERE from_address =?;`, [fromAddress],);
   console.log(rows);
 };
 
-
-getOneDashboardAnalyticsRow();
+getOneTransaction();
